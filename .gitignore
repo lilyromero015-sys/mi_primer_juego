@@ -22,3 +22,6 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+
+# Copia de seguridad local
+backend_respaldo/
