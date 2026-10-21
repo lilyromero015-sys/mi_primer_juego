@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Runner: Aventura de Saltos</title>
+    <!-- Fuentes modernas desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <!-- Estilos del juego -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+
+        <!-- =========================================================
+             PANTALLA 1: INICIO (NOMBRE DEL JUGADOR Y RANKING TOP 10)
+             ========================================================= -->
+        <section id="screenHome" class="screen-view active">
+            <header class="game-header">
+                <h1 class="game-title">⚡ SKY RUNNER</h1>
+                <p class="game-subtitle">¡Corre, esquiva obstáculos, dispara y conquista los 5 mundos!</p>
+            </header>
+
+            <div class="home-grid">
+                <!-- Tarjeta de Ingreso de Jugador -->
+                <div class="card player-card">
+                    <h2 class="card-title">🎮 Nueva Partida</h2>
+                    <p class="card-desc">Ingresa tu nombre para competir en el ranking global:</p>
+
+                    <div class="input-group">
+                        <label for="playerNameInput">Nombre del Jugador:</label>
+                        <input type="text" id="playerNameInput" placeholder="Ej: SuperRunner" maxlength="25"
+                            autocomplete="off">
+                    </div>
+
+                    <button class="btn btn-primary btn-block" id="btnPlay">
+                        🚀 ¡Comenzar a Jugar!
+                    </button>
+
+                    <div class="controls-box">
+                        <h3 class="controls-title">🕹️ Controles:</h3>
+                        <div class="control-row">
+                            <kbd>Espacio</kbd> o <kbd>↑</kbd> <span>Saltar obstáculos</span>
+                        </div>
+                        <div class="control-row">
+                            <kbd>F</kbd> <span>Disparar a enemigos voladores</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta del Ranking Top 10 -->
+                <div class="card ranking-card">
+                    <div class="ranking-header">
+                        <h2 class="card-title">🏆 Top 10 Mejores Jugadores</h2>
+                        <button class="btn-icon" id="btnRefreshRanking" title="Actualizar Ranking">🔄</button>
+                    </div>
+
+                    <div class="ranking-table-container">
+                        <table class="ranking-table" id="rankingTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Jugador</th>
+                                    <th>Puntos</th>
+                                    <th>Nivel</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rankingTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">Cargando mejores puntajes...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================
+             PANTALLA 2: JUEGO ACTIVO (CANVAS Y HUD)
+             ========================================================= -->
+        <section id="screenGame" class="screen-view">
+            <header class="game-header compact">
+                <h1 class="game-title-small">⚡ SKY RUNNER</h1>
+                <span class="current-player-badge">Jugador: <strong id="activePlayerName">Jugador</strong></span>
+            </header>
+
+            <div class="game-wrapper">
+                <!-- Barra superior HUD -->
+                <div class="game-hud" id="gameHud">
+                    <!-- Vidas -->
+                    <div class="hud-card hud-lives">
+                        <span class="hud-label">VIDAS</span>
+                        <div class="hearts-container" id="livesContainer">
+                            <span class="heart active">❤️</span>
+                            <span class="heart active">❤️</span>
+                            <span class="heart active">❤️</span>
+                        </div>
+                    </div>
+
+                    <!-- Nivel actual y Nombre del Mundo -->
+                    <div class="hud-card hud-level">
+                        <span class="hud-label">NIVEL</span>
+                        <span class="hud-value text-accent" id="levelDisplay">1</span>
+                        <span class="hud-subtext" id="worldNameDisplay">Día Soleado</span>
+                    </div>
+
+                    <!-- Puntaje en Vivo -->
+                    <div class="hud-card">
+                        <span class="hud-label">PUNTAJE</span>
+                        <span class="hud-value" id="scoreDisplay">0</span>
+                    </div>
+
+                    <!-- Récord Personal -->
+                    <div class="hud-card">
+                        <span class="hud-label">RÉCORD</span>
+                        <span class="hud-value" id="highScoreDisplay">0</span>
+                    </div>
+                </div>
+
+                <!-- Notificación flotante de subida de nivel -->
+                <div class="level-banner" id="levelBanner">
+                    <h2 id="levelBannerTitle">¡NIVEL 2!</h2>
+                    <p id="levelBannerDesc">Atardecer Dorado</p>
+                </div>
+
+                <!-- Lienzo del juego -->
+                <canvas id="gameCanvas" width="900" height="400"></canvas>
+            </div>
+
+            <footer class="game-footer">
+                <div class="control-badge">
+                    <kbd>Espacio</kbd> / <kbd>↑</kbd> <span>Saltar</span>
+                </div>
+                <div class="control-badge">
+                    <kbd>F</kbd> <span>Disparar</span>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="btnExitToHome">🏠 Salir al Menú</button>
+            </footer>
+        </section>
+
+
+        <!-- =========================================================
+             PANTALLA 3: GAME OVER (MODAL CON DATOS Y OPCIONES)
+             ========================================================= -->
+        <div class="overlay hidden" id="gameOverOverlay">
+            <div class="modal-card">
+                <h2 class="modal-title text-danger">💀 ¡GAME OVER!</h2>
+                <p class="modal-msg">Has perdido todas tus vidas.</p>
+
+                <div class="modal-stats">
+                    <div class="stat-row">
+                        <span>Jugador:</span>
+                        <strong id="goPlayerName">-</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Puntaje final:</span>
+                        <strong id="finalScoreDisplay" class="text-gold">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Nivel alcanzado:</span>
+                        <strong id="finalLevelDisplay" class="text-accent">1</strong>
+                    </div>
+                    <div class="save-status-badge" id="saveStatusBadge">
+                        💾 Guardando partida en base de datos...
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="btnRestart">🔄 Reintentar Partida</button>
+                    <button class="btn btn-secondary" id="btnGoHome">🏠 Volver al Inicio / Ranking</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script principal con la lógica del juego y consumo de API REST -->
+    <script src="/js/game.js"></script>
+</body>
+
+</html>
