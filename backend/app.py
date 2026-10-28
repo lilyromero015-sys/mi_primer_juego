@@ -82,9 +82,13 @@ def save_score():
             player_name = "Jugador Anónimo"
 
         new_record = Score(
+            # pyrefly: ignore[unexpected-keyword]
             player_name=player_name[:50],
+            # pyrefly: ignore[unexpected-keyword]
             score=int(data.get('score', 0)),
+            # pyrefly: ignore[unexpected-keyword]
             level_reached=int(data.get('level_reached', 1)),
+            # pyrefly: ignore[unexpected-keyword]
             world_name=data.get('world_name', 'Día Soleado')[:50]
         )
 

@@ -22,8 +22,8 @@
              ========================================================= -->
         <section id="screenHome" class="screen-view active">
             <header class="game-header">
-                <h1 class="game-title">⚡ SKY RUNNER</h1>
-                <p class="game-subtitle">¡Corre, esquiva obstáculos, dispara y conquista los 5 mundos!</p>
+                <h1 class="game-title">⚡ SKY RUNNER: TITAN QUEST</h1>
+                <p class="game-subtitle">¡Corre, esquiva obstáculos, derrota al Monstruo del Nivel 5, desbloquea nuevos mundos y mejora tu arsenal!</p>
             </header>
 
             <div class="home-grid">
@@ -39,16 +39,19 @@
                     </div>
 
                     <button class="btn btn-primary btn-block" id="btnPlay">
-                        🚀 ¡Comenzar a Jugar!
+                        🚀 ¡Comenzar Aventura!
                     </button>
 
                     <div class="controls-box">
-                        <h3 class="controls-title">🕹️ Controles:</h3>
+                        <h3 class="controls-title">🕹️ Controles y Mecánicas:</h3>
                         <div class="control-row">
                             <kbd>Espacio</kbd> o <kbd>↑</kbd> <span>Saltar obstáculos</span>
                         </div>
                         <div class="control-row">
-                            <kbd>F</kbd> <span>Disparar a enemigos voladores</span>
+                            <kbd>F</kbd> <span>Disparar armas y atacar al Jefe</span>
+                        </div>
+                        <div class="control-row highlight-row">
+                            <span>👹</span> <span><strong>Nivel 5:</strong> ¡Enfrenta al Titán de Lava para desbloquear nuevos niveles y armas!</span>
                         </div>
                     </div>
                 </div>
@@ -88,8 +91,13 @@
              ========================================================= -->
         <section id="screenGame" class="screen-view">
             <header class="game-header compact">
-                <h1 class="game-title-small">⚡ SKY RUNNER</h1>
-                <span class="current-player-badge">Jugador: <strong id="activePlayerName">Jugador</strong></span>
+                <div class="header-left">
+                    <h1 class="game-title-small">⚡ SKY RUNNER</h1>
+                    <span class="current-player-badge">Jugador: <strong id="activePlayerName">Jugador</strong></span>
+                </div>
+                <div class="header-right">
+                    <button class="btn-icon" id="btnSoundToggle" title="Activar/Silenciar Sonido">🔊</button>
+                </div>
             </header>
 
             <div class="game-wrapper">
@@ -112,6 +120,13 @@
                         <span class="hud-subtext" id="worldNameDisplay">Día Soleado</span>
                     </div>
 
+                    <!-- Equipamiento y Armamento Desbloqueado -->
+                    <div class="hud-card hud-weapon">
+                        <span class="hud-label">EQUIPAMIENTO</span>
+                        <span class="hud-value hud-weapon-name" id="weaponDisplay">⚔️ Blaster Nvl 1</span>
+                        <span class="hud-subtext" id="armorDisplay">🛡️ Traje Básico</span>
+                    </div>
+
                     <!-- Puntaje en Vivo -->
                     <div class="hud-card">
                         <span class="hud-label">PUNTAJE</span>
@@ -123,6 +138,31 @@
                         <span class="hud-label">RÉCORD</span>
                         <span class="hud-value" id="highScoreDisplay">0</span>
                     </div>
+                </div>
+
+                <!-- Barra de Vida del Monstruo / Jefe (Aparece en batalla de Boss) -->
+                <div class="boss-health-container hidden" id="bossHealthContainer">
+                    <div class="boss-health-header">
+                        <span class="boss-title" id="bossNameDisplay">👹 TITÁN DE LAVA</span>
+                        <span class="boss-hp-val" id="bossHpText">80 / 80 HP</span>
+                    </div>
+                    <div class="boss-bar-track">
+                        <div class="boss-bar-fill" id="bossHealthBarFill" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <!-- Alerta de Jefe (Siren Warning) -->
+                <div class="boss-warning-banner hidden" id="bossWarningBanner">
+                    <div class="warning-flasher">⚠️ ¡ALERTA DE JEFE! ⚠️</div>
+                    <h2 id="bossWarningName">MAGMATRÓN: TITÁN DE LAVA</h2>
+                    <p>¡Dispara con [F] para vencerlo y desbloquear el siguiente mundo!</p>
+                </div>
+
+                <!-- Banner de Desbloqueo y Nueva Arma -->
+                <div class="upgrade-banner hidden" id="upgradeBanner">
+                    <div class="upgrade-icon" id="upgradeIcon">⚡</div>
+                    <h2 id="upgradeTitle">¡NUEVO ARMA Y EQUIPO!</h2>
+                    <p id="upgradeDesc">Doble Cañón de Plasma + Armadura de Obsidiana</p>
                 </div>
 
                 <!-- Notificación flotante de subida de nivel -->
@@ -167,6 +207,10 @@
                     <div class="stat-row">
                         <span>Nivel alcanzado:</span>
                         <strong id="finalLevelDisplay" class="text-accent">1</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Arsenal desbloqueado:</span>
+                        <strong id="finalWeaponDisplay" class="text-cyan">Blaster Nvl 1</strong>
                     </div>
                     <div class="save-status-badge" id="saveStatusBadge">
                         💾 Guardando partida en base de datos...
