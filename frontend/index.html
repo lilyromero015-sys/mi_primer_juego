@@ -42,6 +42,14 @@
                         🚀 ¡Comenzar Aventura!
                     </button>
 
+                    <!-- Selector de acceso rápido a Mundos Desbloqueados -->
+                    <div class="checkpoint-selector hidden" id="checkpointSelector">
+                        <label class="checkpoint-label" for="chkStartLevel6">
+                            <input type="checkbox" id="chkStartLevel6">
+                            <span>🚀 <strong>Iniciar en Nivel 6 (Ciber Ciudad)</strong> con Armas Pesadas</span>
+                        </label>
+                    </div>
+
                     <div class="controls-box">
                         <h3 class="controls-title">🕹️ Controles y Mecánicas:</h3>
                         <div class="control-row">
@@ -83,6 +91,303 @@
                     </div>
                 </div>
             </div>
+
+            <!-- =========================================================
+                 SECCIÓN: GALERÍA DE MUNDOS, JEFES Y ARSENAL DE GUERRA
+                 ========================================================= -->
+            <div class="card showcase-card" id="showcaseCard">
+                <div class="showcase-header">
+                    <div>
+                        <h2 class="card-title">🌌 Galería de Mundos, Jefes y Arsenal</h2>
+                        <p class="card-desc">Explora los 10 mundos del multiverso, sus monstruos ancestrales y el arsenal de guerra que bota puro plomo.</p>
+                    </div>
+                    <div class="multiverse-badge locked" id="multiverseStatusBadge">
+                        🔒 Portal Nivel 6-10 Bloqueado
+                    </div>
+                </div>
+
+                <!-- Botones de navegación interna de la galería -->
+                <div class="showcase-tabs">
+                    <button class="tab-btn active" id="tabBtnWorlds" type="button">🗺️ 10 Mundos y Lugares</button>
+                    <button class="tab-btn" id="tabBtnWeapons" type="button">⚔️ Arsenal Pesado ("Botando Plomo")</button>
+                    <button class="tab-btn" id="tabBtnMonsters" type="button">👹 Monstruos y Jefes</button>
+                    <button class="tab-btn" id="tabBtnLives" type="button">❤️ Sistema de Vidas Extra</button>
+                </div>
+
+                <!-- PANEL 1: MUNDOS -->
+                <div class="tab-panel active" id="panelWorlds">
+                    <div class="phase-divider">
+                        <span class="phase-badge phase-1">FASE 1: MUNDOS TERRESTRES (Niveles 1 al 5) • 🔓 Desbloqueados</span>
+                        <p class="phase-desc">Supera estos mundos iniciales y destruye al Monstruo del Nivel 5 para romper el sello del multiverso.</p>
+                    </div>
+                    <div class="worlds-grid">
+                        <div class="world-card unlocked">
+                            <div class="world-num">NIVEL 1</div>
+                            <div class="world-icon">☀️</div>
+                            <div class="world-name">Día Soleado</div>
+                            <div class="world-detail">Paso inicial accesible y relajado</div>
+                        </div>
+                        <div class="world-card unlocked">
+                            <div class="world-num">NIVEL 2</div>
+                            <div class="world-icon">🌅</div>
+                            <div class="world-name">Atardecer Dorado</div>
+                            <div class="world-detail">Aceleración gradual del ritmo</div>
+                        </div>
+                        <div class="world-card unlocked">
+                            <div class="world-num">NIVEL 3</div>
+                            <div class="world-icon">🌌</div>
+                            <div class="world-name">Noche Estrellada</div>
+                            <div class="world-detail">Cielo nocturno con estrellas brillantes</div>
+                        </div>
+                        <div class="world-card unlocked">
+                            <div class="world-num">NIVEL 4</div>
+                            <div class="world-icon">🏜️</div>
+                            <div class="world-name">Desierto Místico</div>
+                            <div class="world-detail">Tormenta de arena y obstáculos ágiles</div>
+                        </div>
+                        <div class="world-card unlocked boss-card">
+                            <div class="world-num">NIVEL 5 • MONSTRUO JEFE</div>
+                            <div class="world-icon">🔥</div>
+                            <div class="world-name">Mundo Volcánico</div>
+                            <div class="world-detail">👹 <strong>Titán Magmatrón</strong> (¡Mátalo para desbloquear el Nivel 6!)</div>
+                        </div>
+                    </div>
+
+                    <div class="phase-divider">
+                        <span class="phase-badge phase-2" id="phase2Badge">FASE 2: MUNDOS DEL MULTIVERSO (Niveles 6 al 10) • 🔒 Bloqueados</span>
+                        <p class="phase-desc" id="phase2Desc">Al matar a Magmatrón en el Nivel 5 se abre el portal a estos 5 mundos con vidas extra y armas que botan puro plomo.</p>
+                    </div>
+                    <div class="worlds-grid">
+                        <div class="world-card locked-world" id="cardWorld6">
+                            <div class="world-num">NIVEL 6</div>
+                            <div class="world-icon">🏙️</div>
+                            <div class="world-name">Ciber Ciudad Neón</div>
+                            <div class="world-detail">❤️ Vidas Extra en pista + Doble Ametralladora</div>
+                        </div>
+                        <div class="world-card locked-world" id="cardWorld7">
+                            <div class="world-num">NIVEL 7</div>
+                            <div class="world-icon">🔮</div>
+                            <div class="world-name">Caverna Cuántica</div>
+                            <div class="world-detail">Gatling Cuántica Cuádruple en ráfaga</div>
+                        </div>
+                        <div class="world-card locked-world boss-card" id="cardWorld8">
+                            <div class="world-num">NIVEL 8 • MONSTRUO JEFE</div>
+                            <div class="world-icon">❄️</div>
+                            <div class="world-name">Reino Glaciar Ártico</div>
+                            <div class="world-detail">👹 <strong>Golem Glaciar</strong> + Cañón de Antimateria</div>
+                        </div>
+                        <div class="world-card locked-world boss-card" id="cardWorld9">
+                            <div class="world-num">NIVEL 9 • SUB-JEFE</div>
+                            <div class="world-icon">🌌</div>
+                            <div class="world-name">Fortaleza del Vacío</div>
+                            <div class="world-detail">👹 <strong>Centinela del Vacío</strong> + Hiper-Taquiones</div>
+                        </div>
+                        <div class="world-card locked-world boss-card" id="cardWorld10">
+                            <div class="world-num">NIVEL 10 • JEFE FINAL</div>
+                            <div class="world-icon">👑</div>
+                            <div class="world-name">Dimensión Titán: Caos</div>
+                            <div class="world-detail">👹 <strong>Dragón Cósmico</strong> + Arsenal Dios del Plomo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 2: ARSENAL PESADO ("BOTANDO PLOMO") -->
+                <div class="tab-panel" id="panelWeapons">
+                    <div class="arsenal-info-box">
+                        <span class="info-tag">🔥 DISPARO CONTINUO AUTOMÁTICO:</span>
+                        <span>¡Mantén presionada la tecla <kbd>F</kbd> o el clic del mouse para <strong>ráfagas ininterrumpidas</strong>! A partir del Nivel 6 tus armas botan plomo a altísima cadencia y destruyen obstáculos.</span>
+                    </div>
+                    <div class="weapons-grid">
+                        <div class="weapon-showcase-card">
+                            <div class="weapon-badge">Tier 1 • Niveles 1-5</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">🔫</span>
+                                <div>
+                                    <div class="weapon-title">Blaster de Pulso</div>
+                                    <div class="weapon-sub">Disparo láser estándar</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 40%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 1 disparo láser</div>
+                            </div>
+                        </div>
+
+                        <div class="weapon-showcase-card unlocked-tier">
+                            <div class="weapon-badge badge-lead">Tier 2 • ¡Nivel 6 (Tras matar a Magmatrón)!</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">🔥</span>
+                                <div>
+                                    <div class="weapon-title">Doble Ametralladora de Plasma Pesado</div>
+                                    <div class="weapon-sub">¡Botando plomo! Doble ráfaga paralela rápida</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 68%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 2 balas pesadas paralelas</div>
+                            </div>
+                        </div>
+
+                        <div class="weapon-showcase-card unlocked-tier">
+                            <div class="weapon-badge badge-lead">Tier 3 • Nivel 7</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">⚡</span>
+                                <div>
+                                    <div class="weapon-title">Gatling Cuántica Cuádruple</div>
+                                    <div class="weapon-sub">Fuego continuo en abanico de alta velocidad + Escudo Deflector</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 80%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 4 balas simultáneas en abanico</div>
+                            </div>
+                        </div>
+
+                        <div class="weapon-showcase-card unlocked-tier">
+                            <div class="weapon-badge badge-lead">Tier 4 • Nivel 8</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">❄️</span>
+                                <div>
+                                    <div class="weapon-title">Cañón Devastador de Antimateria</div>
+                                    <div class="weapon-sub">Balas pesadas perforantes que pulverizan obstáculos y monstruos</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 86%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 4 proyectiles perforantes pesados</div>
+                            </div>
+                        </div>
+
+                        <div class="weapon-showcase-card unlocked-tier">
+                            <div class="weapon-badge badge-lead">Tier 5 • Nivel 9</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">🌀</span>
+                                <div>
+                                    <div class="weapon-title">Hiper-Tormenta de Taquiones</div>
+                                    <div class="weapon-sub">Ametralladora quíntuple automática continua con estela destructiva</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 92%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 5 proyectiles continuos ultra rápidos</div>
+                            </div>
+                        </div>
+
+                        <div class="weapon-showcase-card supreme-tier">
+                            <div class="weapon-badge badge-supreme">Tier 6 • Nivel 10 (Arsenal Dios del Plomo)</div>
+                            <div class="weapon-name-row">
+                                <span class="weapon-icon">👑</span>
+                                <div>
+                                    <div class="weapon-title">Arsenal Titán Dios del Plomo Cósmico</div>
+                                    <div class="weapon-sub">Lluvia masiva de plomo cósmico continuo: 6 balas a cadencia máxima</div>
+                                </div>
+                            </div>
+                            <div class="weapon-stats">
+                                <div class="stat-bar"><span class="stat-lbl">Cadencia:</span> <div class="bar-fill" style="width: 100%;"></div></div>
+                                <div class="stat-bar"><span class="stat-lbl">Proyectiles:</span> 6 balas cósmicas continuas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 3: MONSTRUOS Y JEFES -->
+                <div class="tab-panel" id="panelMonsters">
+                    <div class="monsters-grid">
+                        <div class="monster-card">
+                            <div class="monster-badge">Monstruo 1 • Nivel 5</div>
+                            <div class="monster-header">
+                                <span class="monster-avatar">👹</span>
+                                <div>
+                                    <div class="monster-name">Magmatrón: Titán de Lava</div>
+                                    <div class="monster-world">Mundo Volcánico</div>
+                                </div>
+                            </div>
+                            <p class="monster-desc">El guardián de fuego. Al matarlo liberas el portal a los Mundos del Multiverso (Niveles 6-10).</p>
+                            <div class="monster-attacks"><strong>Ataques:</strong> Bolas de fuego parabólicas, estacas de magma y meteoros.</div>
+                        </div>
+
+                        <div class="monster-card">
+                            <div class="monster-badge">Monstruo 2 • Nivel 8</div>
+                            <div class="monster-header">
+                                <span class="monster-avatar">❄️</span>
+                                <div>
+                                    <div class="monster-name">Golem Glaciar Ancestral</div>
+                                    <div class="monster-world">Reino Glaciar Ártico</div>
+                                </div>
+                            </div>
+                            <p class="monster-desc">Coloso de hielo eterno que defiende los mundos superiores. Vulnerable a ráfagas pesadas de plasma.</p>
+                            <div class="monster-attacks"><strong>Ataques:</strong> Estalactitas afiladas y ráfagas congelantes al ras del suelo.</div>
+                        </div>
+
+                        <div class="monster-card">
+                            <div class="monster-badge">Monstruo 3 • Nivel 9</div>
+                            <div class="monster-header">
+                                <span class="monster-avatar">👁️</span>
+                                <div>
+                                    <div class="monster-name">Centinela del Vacío Astral</div>
+                                    <div class="monster-world">Fortaleza del Vacío Astral</div>
+                                </div>
+                            </div>
+                            <p class="monster-desc">Entidad sombría dimensional que custodia la antesala del trono del Caos.</p>
+                            <div class="monster-attacks"><strong>Ataques:</strong> Orbes oscuros gravitacionales y pulsos de vacío.</div>
+                        </div>
+
+                        <div class="monster-card boss-final">
+                            <div class="monster-badge badge-final">Jefe Final Supremo • Nivel 10</div>
+                            <div class="monster-header">
+                                <span class="monster-avatar">🐉</span>
+                                <div>
+                                    <div class="monster-name">Dragón Cósmico del Caos</div>
+                                    <div class="monster-world">Dimensión Titán: Caos Supremo</div>
+                                </div>
+                            </div>
+                            <p class="monster-desc">El rey supremo del universo. Necesitarás todo el plomo de tu arsenal y tus vidas acumuladas para vencerlo.</p>
+                            <div class="monster-attacks"><strong>Ataques:</strong> Tormentas de caos multidireccionales y orbes hiper-densos.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 4: VIDAS EXTRA -->
+                <div class="tab-panel" id="panelLives">
+                    <div class="lives-showcase-box">
+                        <div class="lives-visual">
+                            <span class="heart-pulse">❤️</span>
+                            <span class="heart-pulse">❤️</span>
+                            <span class="heart-pulse">❤️</span>
+                            <span class="heart-pulse bonus">❤️</span>
+                            <span class="heart-pulse bonus">❤️</span>
+                        </div>
+                        <h3>¡Recoge Vidas Extra en los Niveles 6 al 10!</h3>
+                        <p>
+                            Para superar la dificultad de los mundos superiores y derrotar a los nuevos monstruos,
+                            <strong>a partir del Nivel 6 aparecerán Corazones de Energía flotando por la pista</strong>.
+                        </p>
+                        <div class="lives-perks">
+                            <div class="perk-item">
+                                <span class="perk-icon">❤️</span>
+                                <div>
+                                    <strong>Acumula hasta 5 Vidas:</strong>
+                                    <span>Tu barra de vidas se expande hasta 5 corazones para aguantar las intensas batallas.</span>
+                                </div>
+                            </div>
+                            <div class="perk-item">
+                                <span class="perk-icon">🛡️</span>
+                                <div>
+                                    <strong>Escudo Deflector Automático:</strong>
+                                    <span>A partir del Nivel 7 tu armadura recarga un escudo protector contra impactos.</span>
+                                </div>
+                            </div>
+                            <div class="perk-item">
+                                <span class="perk-icon">💥</span>
+                                <div>
+                                    <strong>Destrucción de Obstáculos con Plomo:</strong>
+                                    <span>Tus armas botando plomo pueden disparar y destruir los obstáculos del camino.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
 
@@ -110,6 +415,8 @@
                             <span class="heart active">❤️</span>
                             <span class="heart active">❤️</span>
                             <span class="heart active">❤️</span>
+                            <span class="heart lost" id="heart4" title="Vida Extra (Niveles 6-10)">❤️</span>
+                            <span class="heart lost" id="heart5" title="Vida Extra (Niveles 6-10)">❤️</span>
                         </div>
                     </div>
 

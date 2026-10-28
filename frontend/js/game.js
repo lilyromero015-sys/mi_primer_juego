@@ -334,7 +334,7 @@ const WORLDS = [
         level: 1,
         name: "Día Soleado",
         minScore: 0,
-        speed: 6.0,
+        speed: 5.5,
         skyTop: '#38bdf8',
         skyBottom: '#bae6fd',
         sunColor: '#fef08a',
@@ -349,7 +349,7 @@ const WORLDS = [
         level: 2,
         name: "Atardecer Dorado",
         minScore: 160,
-        speed: 8.5,
+        speed: 6.2,
         skyTop: '#7c2d12',
         skyBottom: '#f97316',
         sunColor: '#fdba74',
@@ -364,7 +364,7 @@ const WORLDS = [
         level: 3,
         name: "Noche Estrellada",
         minScore: 360,
-        speed: 11.5,
+        speed: 7.0,
         skyTop: '#090d16',
         skyBottom: '#1e1b4b',
         sunColor: '#e0e7ff',
@@ -379,7 +379,7 @@ const WORLDS = [
         level: 4,
         name: "Desierto Místico",
         minScore: 600,
-        speed: 15.0,
+        speed: 7.9,
         skyTop: '#b45309',
         skyBottom: '#fde047',
         sunColor: '#fffbeb',
@@ -394,7 +394,7 @@ const WORLDS = [
         level: 5,
         name: "Mundo Volcánico",
         minScore: 880,
-        speed: 19.0,
+        speed: 8.9,
         skyTop: '#450a0a',
         skyBottom: '#dc2626',
         sunColor: '#f87171',
@@ -413,7 +413,7 @@ const WORLDS = [
         level: 6,
         name: "Ciber Ciudad Neón",
         minScore: 1350,
-        speed: 23.0,
+        speed: 9.8,
         skyTop: '#170529',
         skyBottom: '#3b0764',
         sunColor: '#06b6d4',
@@ -428,7 +428,7 @@ const WORLDS = [
         level: 7,
         name: "Caverna de Cristal Cuántico",
         minScore: 1850,
-        speed: 27.0,
+        speed: 10.7,
         skyTop: '#0c0a2a',
         skyBottom: '#4c1d95',
         sunColor: '#a78bfa',
@@ -443,7 +443,7 @@ const WORLDS = [
         level: 8,
         name: "Reino Glaciar Ártico",
         minScore: 2450,
-        speed: 31.0,
+        speed: 11.6,
         skyTop: '#082f49',
         skyBottom: '#38bdf8',
         sunColor: '#e0f2fe',
@@ -462,7 +462,7 @@ const WORLDS = [
         level: 9,
         name: "Fortaleza del Vacío Astral",
         minScore: 3200,
-        speed: 35.0,
+        speed: 12.5,
         skyTop: '#020617',
         skyBottom: '#1e1b4b',
         sunColor: '#f43f5e',
@@ -477,7 +477,7 @@ const WORLDS = [
         level: 10,
         name: "Dimensión Titán: Caos Supremo",
         minScore: 4000,
-        speed: 39.0,
+        speed: 13.5,
         skyTop: '#2e0202',
         skyBottom: '#b45309',
         sunColor: '#facc15',
@@ -669,29 +669,29 @@ class BossProjectile {
             const dx = targetX - x;
             const dy = targetY - y;
             const dist = Math.hypot(dx, dy) || 1;
-            const speed = Math.max(8.5, gameSpeed * 0.65);
+            const speed = 6.2;
             this.vx = (dx / dist) * speed;
             this.vy = (dy / dist) * speed;
         } else if (type === 'magma_surge') {
             this.width = 34;
             this.height = 20;
             this.y = GROUND_Y - this.height;
-            this.vx = -(gameSpeed + 3.0);
+            this.vx = -(gameSpeed + 1.8);
             this.vy = 0;
         } else if (type === 'meteor') {
             this.width = 28;
             this.height = 28;
-            this.vx = -(gameSpeed * 0.3 + 2.5);
-            this.vy = 6.0;
+            this.vx = -4.0;
+            this.vy = 4.8;
         } else if (type === 'ice_shard') {
             this.width = 24;
             this.height = 14;
-            this.vx = -(gameSpeed + 3.5);
+            this.vx = -(gameSpeed + 2.0);
             this.vy = 0;
         } else {
             this.width = 26;
             this.height = 26;
-            this.vx = -(gameSpeed * 0.45 + 4);
+            this.vx = -6.0;
             this.vy = Math.sin(Date.now() / 200) * 2;
         }
     }
@@ -829,7 +829,7 @@ class Boss {
 
         // Lógica de Ataque
         this.attackTimer++;
-        if (this.attackTimer > 85) {
+        if (this.attackTimer > 105) {
             this.attackTimer = 0;
             this.performAttack();
         }
@@ -1070,8 +1070,8 @@ class Player {
         this.y = GROUND_Y - this.height;
 
         this.velocityY = 0;
-        this.gravity = 0.82;
-        this.jumpForce = -14.6;
+        this.gravity = 0.76;
+        this.jumpForce = -14.2;
         this.isGrounded = true;
         this.jumpBuffer = 0;
 
@@ -1199,8 +1199,8 @@ class Player {
             }
         }
 
-        // Caída más firme y reactiva para evitar flotabilidad excesiva en saltos rápidos
-        const currentGravity = this.velocityY > 0 ? this.gravity * 1.25 : this.gravity;
+        // Caída controlada pero suave y cómoda
+        const currentGravity = this.velocityY > 0 ? this.gravity * 1.15 : this.gravity;
         this.velocityY += currentGravity;
         this.y += this.velocityY;
 
@@ -1346,11 +1346,11 @@ class Player {
     }
 
     getHitbox() {
-        const padding = 6;
+        const padding = 8;
         return {
-            x: this.x + padding,
+            x: this.x + padding + 1,
             y: this.y + padding,
-            width: this.width - padding * 2,
+            width: this.width - padding * 2 - 2,
             height: this.height - padding * 2
         };
     }
@@ -1365,7 +1365,7 @@ class FlyingEnemy {
         this.y = y;
         this.width = 40;
         this.height = 32;
-        this.speed = gameSpeed + 1.5;
+        this.speed = gameSpeed + 0.6;
         this.wingTimer = 0;
         this.wingUp = false;
         this.markedForDeletion = false;
@@ -1906,12 +1906,12 @@ function showUpgradeBanner(icon, title, desc) {
 
 function showLevelBanner(levelNumber, worldName) {
     let speedTag = '';
-    if (levelNumber === 1) speedTag = 'Velocidad Normal';
-    else if (levelNumber === 2) speedTag = '⚡ Velocidad +';
-    else if (levelNumber === 3) speedTag = '⚡⚡ Alta Velocidad';
-    else if (levelNumber === 4) speedTag = '🔥 Mucho más Rápido';
-    else if (levelNumber === 5) speedTag = '💥 ¡HIPERVELOCIDAD & JEFE!';
-    else speedTag = `🚀 ULTRA VELOCIDAD NIVEL ${levelNumber}`;
+    if (levelNumber === 1) speedTag = 'Paso Inicial';
+    else if (levelNumber === 2) speedTag = '⚡ Ritmo Ágil';
+    else if (levelNumber === 3) speedTag = '⚡⚡ Aceleración Moderada';
+    else if (levelNumber === 4) speedTag = '🔥 Velocidad Rápida';
+    else if (levelNumber === 5) speedTag = '💥 ¡Batalla del Jefe Magmatrón!';
+    else speedTag = `⚡ Velocidad Nivel ${levelNumber}`;
 
     levelBannerTitle.textContent = `¡NIVEL ${levelNumber}!`;
     levelBannerDesc.textContent = `${worldName} • [${speedTag}]`;
@@ -2002,13 +2002,14 @@ function handleGameEntities() {
     if (!boss) {
         groundSpawnTimer++;
         const lastObstacle = groundObstacles[groundObstacles.length - 1];
-        // Distancia mínima justa que garantiza que el jugador pueda aterrizar y saltar nuevamente
-        const minSafeDistance = Math.max(260, gameSpeed * 20 + 80);
-        // Margen dinámico para alternar distancias naturales
-        const targetSpawnDistance = minSafeDistance + (Math.sin(groundSpawnTimer * 0.15) * 50 + 60);
+        // Distancia mínima justa y cómoda para que el jugador pueda aterrizar y prepararse
+        const minSafeDistance = Math.max(360, gameSpeed * 34 + 100);
+        // Margen dinámico para alternar distancias naturales sin saturar la pantalla
+        const targetSpawnDistance = minSafeDistance + (Math.sin(groundSpawnTimer * 0.1) * 60 + 80);
 
         const canSpawnByDistance = !lastObstacle || (canvas.width - lastObstacle.x > targetSpawnDistance);
-        const minFramesPassed = groundSpawnTimer > Math.max(20, Math.round(360 / Math.max(6, gameSpeed)));
+        // Intervalo generoso para que el jugador pueda respirar y pasar de nivel equilibradamente
+        const minFramesPassed = groundSpawnTimer > Math.max(75, Math.round(580 / Math.max(5, gameSpeed)));
 
         if (canSpawnByDistance && minFramesPassed) {
             groundObstacles.push(new GroundObstacle(canvas.width + 20));
@@ -2034,14 +2035,15 @@ function handleGameEntities() {
     if (!boss) {
         flyingSpawnTimer++;
         const lastEnemy = flyingEnemies[flyingEnemies.length - 1];
-        const minEnemyDistance = Math.max(320, gameSpeed * 22 + 90);
+        const minEnemyDistance = Math.max(460, gameSpeed * 38 + 120);
         const canSpawnEnemy = !lastEnemy || (canvas.width - lastEnemy.x > minEnemyDistance);
-        const minEnemyFrames = flyingSpawnTimer > Math.max(30, Math.round(480 / Math.max(6, gameSpeed)));
+        // Aparecen de forma balanceada y espaciada
+        const minEnemyFrames = flyingSpawnTimer > Math.max(110, Math.round(820 / Math.max(5, gameSpeed)));
 
         if (canSpawnEnemy && minEnemyFrames) {
-            // Evitar solapamiento frontal directo con obstáculos terrestres
+            // Evitar que aparezca directamente encima de un obstáculo terrestre
             const lastGround = groundObstacles[groundObstacles.length - 1];
-            if (!lastGround || (canvas.width - lastGround.x > 150)) {
+            if (!lastGround || (canvas.width - lastGround.x > 200)) {
                 const possibleHeights = [GROUND_Y - 80, GROUND_Y - 125, GROUND_Y - 165];
                 const spawnY = possibleHeights[Math.floor(Math.random() * possibleHeights.length)];
                 flyingEnemies.push(new FlyingEnemy(canvas.width + 30, spawnY));
