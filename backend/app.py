@@ -114,8 +114,8 @@ if __name__ == '__main__':
     print("Frontend servido desde: frontend/")
     print("==================================================")
     
-    # Render asigna dinámicamente un puerto. Si no existe, usa el 10000 por defecto.
-    port = int(os.environ.get('PORT', 10000))
+    # Render asigna dinámicamente un puerto en os.environ['PORT']. Si no existe en local, usa el 5000.
+    port = int(os.environ.get('PORT', 5000))
     
-    # IMPORTANTE: host '0.0.0.0' permite conexiones externas en Render
+    # IMPORTANTE: host '0.0.0.0' permite conexiones locales y externas en Render
     app.run(host='0.0.0.0', port=port, debug=False)
